@@ -1,0 +1,22 @@
+export OUTPUT_DIR=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/model/im_bot_bs128_0823_copy_weightCE
+python3 run_classification.py \
+    --output_dir=$OUTPUT_DIR \
+    --model_type=customerBert \
+    --problem_type=single_label_classification \
+    --model_checkpoint=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/models/chinese-macbert-base \
+    --train_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/train_d0823_copy.json \
+    --dev_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/eval_d0823_copy.json \
+    --test_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/test_d0823_copy.json \
+    --label_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/label2id.json \
+    --max_seq_length=128 \
+    --do_train \
+    --learning_rate=1e-5 \
+    --num_train_epochs=30 \
+    --batch_size=128 \
+    --warmup_proportion=0.1 \
+    --weight_decay=0.01 \
+    --classifier_dropout=0.1 \
+    --seed=0 \
+    --early_stop=5 \
+    --loss_type=weightCE \
+    --f_train_data_count=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/data_count_copy.json

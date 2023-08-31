@@ -1,0 +1,22 @@
+export OUTPUT_DIR=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0828/model/im_bot_bs128_0829_multi_task
+python3 run_multi_token_and_sequence_classification.py \
+    --output_dir=$OUTPUT_DIR \
+    --model_type=multi_task_bert \
+    --problem_type=single_label_classification \
+    --model_checkpoint=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/models/chinese-macbert-base \
+    --train_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/train_d0823.json \
+    --dev_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/eval_d0823.json \
+    --test_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/d0823/test_d0823.json \
+    --label_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/label2id.json \
+    --token_label_file=/mnt/bn/fulei-v6-hl-nas-mlx/mlx/workspace/saas/imbot/data/ner_label2id.json \
+    --max_length=128 \
+    --do_predict \
+    --learning_rate=1e-5 \
+    --num_train_epochs=30 \
+    --batch_size=128 \
+    --warmup_proportion=0.1 \
+    --weight_decay=0.01 \
+    --classifier_dropout=0.1 \
+    --seed=0 \
+    --early_stop=5 \
+    --loss_type=CE
